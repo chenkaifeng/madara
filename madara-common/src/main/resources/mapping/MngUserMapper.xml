@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.keiver.madara.common.dao.MngUserDao" >
+  <resultMap id="BaseResultMap" type="com.keiver.madara.common.domain.MngUser" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_FAIL_NUM" property="loginFailNum" jdbcType="SMALLINT" />
+    <result column="CREATE_USER_CODE" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="CHANGE_PWD_TIME" property="changePwdTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_UPDATE" property="gmtUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="PageResultMap" type="com.keiver.madara.common.domain.MngUser" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_FAIL_NUM" property="loginFailNum" jdbcType="SMALLINT" />
+    <result column="CREATE_USER_CODE" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="CHANGE_PWD_TIME" property="changePwdTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_UPDATE" property="gmtUpdate" jdbcType="TIMESTAMP" />
+    <collection  property="roleName"  ofType="java.lang.String"
+    	select ="selectRoleNameListByUserId" column = "{userId = id}">
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_CODE, NAME, PASSWORD, STATUS, LAST_LOGIN_TIME, LOGIN_FAIL_NUM, CREATE_USER_CODE, 
+    CHANGE_PWD_TIME, REMARK, GMT_CREATE, GMT_UPDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mng_user
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mng_user
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.keiver.madara.common.domain.MngUser" >
+    insert into mng_user (ID, USER_CODE, NAME, 
+      PASSWORD, STATUS, LAST_LOGIN_TIME, 
+      LOGIN_FAIL_NUM, CREATE_USER_CODE, CHANGE_PWD_TIME, 
+      REMARK, GMT_CREATE, GMT_UPDATE
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{loginFailNum,jdbcType=SMALLINT}, #{createUserCode,jdbcType=VARCHAR}, #{changePwdTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.keiver.madara.common.domain.MngUser" useGeneratedKeys="true" keyProperty="id" >
+    insert into mng_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME,
+      </if>
+      <if test="loginFailNum != null" >
+        LOGIN_FAIL_NUM,
+      </if>
+      <if test="createUserCode != null" >
+        CREATE_USER_CODE,
+      </if>
+      <if test="changePwdTime != null" >
+        CHANGE_PWD_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE,
+      </if>
+      <if test="gmtUpdate != null" >
+        GMT_UPDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginFailNum != null" >
+        #{loginFailNum,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserCode != null" >
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changePwdTime != null" >
+        #{changePwdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.keiver.madara.common.domain.MngUser" >
+    update mng_user
+    <set >
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginFailNum != null" >
+        LOGIN_FAIL_NUM = #{loginFailNum,jdbcType=SMALLINT},
+      </if>
+      <if test="createUserCode != null" >
+        CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="changePwdTime != null" >
+        CHANGE_PWD_TIME = #{changePwdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        GMT_UPDATE = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.keiver.madara.common.domain.MngUser" >
+    update mng_user
+    set USER_CODE = #{userCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      LOGIN_FAIL_NUM = #{loginFailNum,jdbcType=SMALLINT},
+      CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+      CHANGE_PWD_TIME = #{changePwdTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_UPDATE = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 根据用户code查询用户 -->
+  <select id="getUserByUserCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mng_user
+    where user_code = #{userCode}
+  </select>
+  
+  <!-- 查询用户拥有的权限集合 -->
+  <select id="queryPermissions" resultType="string" parameterType="java.lang.Long">
+    select m.permission from mng_user_role ur 
+      LEFT JOIN mng_role_menu rm on ur.role_id = rm.role_id 
+      LEFT JOIN mng_menu m on rm.menu_id = m.id 
+    where ur.user_id = #{userId}
+  </select>
+  
+  <!-- 查询用户拥有的菜单ID集合 --> 
+  <select id="queryMenuIdListByUserId" resultType="java.lang.Long">
+    select rm.menu_id from mng_user_role ur 
+      LEFT JOIN mng_role_menu rm on ur.role_id = rm.role_id 
+    where ur.user_id = #{userId} group by rm.menu_id
+  </select>
+  
+  <!-- 查询用户的角色名集合 --> 
+  <select id="selectRoleNameListByUserId" resultType="java.lang.String">
+    select r.name from mng_role r 
+      LEFT JOIN mng_user_role ur on ur.role_id = r.id 
+    where ur.user_id = #{userId}
+    order by r.name
+  </select>
+  
+  <select id="queryListByUserIdList" resultMap="BaseResultMap">
+    select 
+       <include refid="Base_Column_List" />
+    from mng_user
+    where id in 
+		<foreach item="userId" collection="userIdList" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+  </select>
+  
+  <select id="queryListByRoleId" resultMap="BaseResultMap">
+    select 
+       <include refid="Base_Column_List" />
+    from mng_user
+    where id in (
+    	select user_id from mng_user_role ur where ur.role_id = #{roleId}
+		)
+  </select>
+  
+  <select id="listQueryMngUserByPage" resultMap="PageResultMap" parameterType="com.keiver.madara.common.request.mng.MngUserQueryRequest" >
+      select
+      <include refid="Base_Column_List" />
+      from mng_user t
+      where 1=1  
+         <if test="name != null and name !=''">  
+             and t.name like concat('%',#{name},'%') 
+         </if>  
+         <if test="status != null and status !=''" >  
+             and t.status =  #{status}
+         </if>
+  </select>
+  
+  <select id="getUserByMap" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+	 	select 
+    	<include refid="Base_Column_List" />
+    	from MNG_USER
+    	where USER_CODE = #{userCode,jdbcType=VARCHAR} and
+    	PASSWORD = #{password,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateUserStatus" >
+    update mng_user
+    <set >
+      		<if test="status != null" >
+        		status = #{status,jdbcType=VARCHAR},
+      		</if>
+      		<if test="gmtUpdate != null" >
+        		gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      		</if>
+      		<if test="loginFailNum != null" >
+        		login_fail_num = #{loginFailNum,jdbcType=SMALLINT},
+      		</if>
+    </set>
+    where id in 
+		<foreach item="userId" collection="userIdList" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+  </update>
+</mapper>

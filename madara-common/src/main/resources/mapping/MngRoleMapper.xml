@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.keiver.madara.common.dao.MngRoleDao" >
+  <resultMap id="BaseResultMap" type="com.keiver.madara.common.domain.MngRole" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_CODE" property="createUserCode" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER_CODE" property="updateUserCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ROLE_TYPE" property="roleType" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_UPDATE" property="gmtUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLE_CODE, NAME, CREATE_USER_CODE, UPDATE_USER_CODE, STATUS, ROLE_TYPE, REMARK, 
+    GMT_CREATE, GMT_UPDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mng_role
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mng_role
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.keiver.madara.common.domain.MngRole" >
+    insert into mng_role (ID, ROLE_CODE, NAME, 
+      CREATE_USER_CODE, UPDATE_USER_CODE, STATUS, 
+      ROLE_TYPE, REMARK, GMT_CREATE, 
+      GMT_UPDATE)
+    values (#{id,jdbcType=BIGINT}, #{roleCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{createUserCode,jdbcType=VARCHAR}, #{updateUserCode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{roleType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.keiver.madara.common.domain.MngRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into mng_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleCode != null" >
+        ROLE_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="createUserCode != null" >
+        CREATE_USER_CODE,
+      </if>
+      <if test="updateUserCode != null" >
+        UPDATE_USER_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE,
+      </if>
+      <if test="gmtUpdate != null" >
+        GMT_UPDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null" >
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserCode != null" >
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.keiver.madara.common.domain.MngRole" >
+    update mng_role
+    <set >
+      <if test="roleCode != null" >
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null" >
+        CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserCode != null" >
+        UPDATE_USER_CODE = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        GMT_UPDATE = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.keiver.madara.common.domain.MngRole" >
+    update mng_role
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+      UPDATE_USER_CODE = #{updateUserCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ROLE_TYPE = #{roleType,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_UPDATE = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  	<select id="listQueryMngRoleByPage" resultMap="BaseResultMap" parameterType="com.keiver.madara.common.request.mng.MngRoleQueryRequest" >
+	    select
+	    <include refid="Base_Column_List" />
+	    from mng_role t
+	    where 1=1  
+        <if test="name != null and name !=''">
+            and t.name like concat('%',#{name},'%') 
+        </if>  
+        <if test="status != null and status !=''">
+            and t.status =  #{status}
+        </if> 
+	</select>
+	
+	<update id="updateRoleStatus" >
+    	update mng_role
+    	<set >
+      		<if test="status != null" >
+        		status = #{status,jdbcType=VARCHAR},
+      		</if>
+      		<if test="gmtUpdate != null" >
+        		gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      		</if>
+      		<if test="updateUserCode != null" >
+        		update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      		</if>
+    	</set>
+    	where id in 
+		<foreach item="roleId" collection="roleIdList" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+  </update>
+  
+  <select id="queryListByRoleIdList" resultMap="BaseResultMap">
+    select 
+       <include refid="Base_Column_List" />
+    from mng_role
+    where id in 
+		<foreach item="roleId" collection="roleIdList" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+  </select>
+</mapper>

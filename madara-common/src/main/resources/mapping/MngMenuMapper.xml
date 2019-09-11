@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.keiver.madara.common.dao.MngMenuDao" >
+  <resultMap id="BaseResultMap" type="com.keiver.madara.common.domain.MngMenu" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PERMISSION" property="permission" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="ORDERING" property="ordering" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MENU_CODE, PARENT_CODE, NAME, URL, PERMISSION, TYPE, ICON, ORDERING
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mng_menu
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mng_menu
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.keiver.madara.common.domain.MngMenu" >
+    insert into mng_menu (ID, MENU_CODE, PARENT_CODE, 
+      NAME, URL, PERMISSION, 
+      TYPE, ICON, ORDERING
+      )
+    values (#{id,jdbcType=BIGINT}, #{menuCode,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{ordering,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.keiver.madara.common.domain.MngMenu" >
+    insert into mng_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="menuCode != null" >
+        MENU_CODE,
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="permission != null" >
+        PERMISSION,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="ordering != null" >
+        ORDERING,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="menuCode != null" >
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.keiver.madara.common.domain.MngMenu" >
+    update mng_menu
+    <set >
+      <if test="menuCode != null" >
+        MENU_CODE = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null" >
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ORDERING = #{ordering,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.keiver.madara.common.domain.MngMenu" >
+    update mng_menu
+    set MENU_CODE = #{menuCode,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      ORDERING = #{ordering,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  	<!-- 查询所有的资源列表 -->
+  	<select id="queryList" resultType="com.keiver.madara.common.domain.MngMenu" resultMap="BaseResultMap">
+		select m.*
+			from mng_menu m order by m.ordering asc
+	</select>
+	
+	<!-- 查询某角色的资源列表 --> 
+	<select id="queryListByRoleId" resultType="com.keiver.madara.common.domain.MngMenu" resultMap="BaseResultMap">
+		select m.*
+			from mng_role_menu rm
+			LEFT JOIN mng_menu m on rm.menu_id = m.id 
+		where rm.role_id = #{roleId} order by m.ordering asc
+	</select>
+	
+	<!-- 根据父菜单ID查找其子菜单列表 --> 
+	<select id="queryListByParentCode" resultType="com.keiver.madara.common.domain.MngMenu" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from mng_menu where parent_code = #{parentCode} order by ordering asc 
+	</select>
+</mapper>
