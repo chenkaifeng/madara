@@ -5,7 +5,7 @@ import com.keiver.madara.common.base.BaseRequest;
 
 /**
  * 基础分页类
- * @author prd-fuy
+ * @author Chenkf
  * @version $Id: BasePageRequest.java, v 0.1 2018年1月16日 下午5:11:40 prd-fuy Exp $
  */
 public abstract class BasePageRequest extends BaseRequest {

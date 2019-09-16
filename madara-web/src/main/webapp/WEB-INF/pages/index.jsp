@@ -70,10 +70,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" @click="updatePassword" class="btn btn-default btn-flat">修改密码</a>
+                                    <a href="#" @click="updatePassword" class="btn btn-success btn-flat">修改密码</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" @click="logout" class="btn btn-default btn-flat">退出系统</a>
+                                    <a href="#" @click="logout" class="btn btn-success btn-flat">退出系统</a>
                                 </div>
                             </li>
                         </ul>

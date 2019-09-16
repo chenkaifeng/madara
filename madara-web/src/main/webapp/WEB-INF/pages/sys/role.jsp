@@ -36,19 +36,21 @@
 			</div>
 
 			<div class="clearfix"></div>
-			<div class="pull-right" >
-				<shiro:hasPermission name="sys:role:list">
-					<a class="btn btn-primary" @click="detail"><i class="fa fa fa-info-circle"></i>&nbsp;详情</a>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="sys:role:add">
-					<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="sys:role:update">
-					<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-				</shiro:hasPermission>
-				<shiro:hasPermission name="sys:role:close">
-					<a class="btn btn-primary" @click="close"><i class="fa fa-trash-o"></i>&nbsp;注销</a>
-				</shiro:hasPermission>
+			<div class="pull-left" >
+				<div class="form-group col-xs-12">
+					<shiro:hasPermission name="sys:role:list">
+						<a class="btn btn-success" @click="detail"><i class="fa fa fa-info-circle"></i>&nbsp;详情</a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="sys:role:add">
+						<a class="btn btn-success" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="sys:role:update">
+						<a class="btn btn-success" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="sys:role:close">
+						<a class="btn btn-success" @click="close"><i class="fa fa-trash-o"></i>&nbsp;注销</a>
+					</shiro:hasPermission>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -85,7 +87,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-2 control-label"></div> 
-				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+				<input type="button" class="btn btn-success" @click="saveOrUpdate" value="确定"/>
 				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
 			</div>
 		</form>

@@ -81,7 +81,7 @@ var vm = new Vue({
 			
 			layer.open({
                 type: 1,
-                skin: 'layui-layer-molv',
+                skin: 'my-green-skin',
                 title: "用户详情",
                 area: ['800px', '400px'],
                 shadeClose: false,

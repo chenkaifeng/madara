@@ -1,7 +1,8 @@
 # madara简介
 1) 基于spring框架开发的分布式系统
 2) 包含一个web系统、业务系统示例
-3) 后端：spring+spring mvc+mybatis+druid+shiro+dubbo+spring-data-redis+spring kafka,数据库是mysql
+3) 后端：spring+spring mvc+mybatis+druid+shiro+dubbo+spring-data-redis+spring kafka
+4) 数据库：mysql
 4) 前端：adminLTE+vue+jquery+bootstraps+layer
 
 # 模块分类
@@ -25,8 +26,9 @@
 * dubbo的门面接口
 
 
-#启动
+# 启动
 1) clone或下载到本地目录，依赖于madara-common和madara-facade，先mvn install
 2) 外部依赖于zookeeper、redis、myqsl，请确保已经提前装好，执行madara.sql
 3) 修改dev-filter下的config.properties，替换成你的配置
+  (替换数据库用户密码配置时，Druid连接池支持使用密文，可以到测试类DbPasswordTest中将你的密码赋给YOUR_PASSWORD，执行一下测试用例，将打印出的加密后password和publicKey拷贝到config.properties配置文件中)
 4) 使用maven tomcat7插件启动: mvn tomcat7:run

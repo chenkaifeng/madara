@@ -26,11 +26,11 @@
 			</div>
 			
 			<div class="form-group col-xs-1">
-				<a class="btn btn-default" @click="query"><i class="fa fa-search"></i>&nbsp;搜索</a>
+				<a class="btn btn-success" @click="query"><i class="fa fa-search"></i>&nbsp;搜索</a>
 			</div>
 			
 			<div class="form-group col-xs-1">
-				<a class="btn btn-default" @click="reset"><i class="fa fa-undo"></i>&nbsp;重置</a>
+				<a class="btn btn-success" @click="reset"><i class="fa fa-undo"></i>&nbsp;重置</a>
 			</div>
 			
 			<div class="clearfix"></div>

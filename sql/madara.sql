@@ -14,24 +14,25 @@ CREATE TABLE `mng_menu` (
   `ORDERING` bigint(20) NOT NULL COMMENT '菜单排序号',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UNQ_MENU_CODE` (`MENU_CODE`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台菜单权限表';
 
 -- ----------------------------
 -- Records of mng_menu
 -- ----------------------------
-INSERT INTO `mng_menu` VALUES ('1', '1', '0', '系统管理', null, null, 'CATALOG', 'fa fa-cog', '0');
-INSERT INTO `mng_menu` VALUES ('2', '2', '1', '用户管理', 'sys/user', null, 'MENU', 'fa fa-user', '1');
-INSERT INTO `mng_menu` VALUES ('3', '3', '1', '角色管理', 'sys/role', null, 'MENU', 'fa fa-users', '2');
-INSERT INTO `mng_menu` VALUES ('4', '20', '2', '查看', null, 'sys:user:list', 'BUTTON', null, '11');
-INSERT INTO `mng_menu` VALUES ('5', '21', '2', '新增', null, 'sys:user:add', 'BUTTON', null, '12');
-INSERT INTO `mng_menu` VALUES ('6', '22', '2', '修改', null, 'sys:user:update', 'BUTTON', null, '13');
-INSERT INTO `mng_menu` VALUES ('7', '23', '2', '注销', null, 'sys:user:close', 'BUTTON', null, '14');
-INSERT INTO `mng_menu` VALUES ('8', '30', '3', '查看', null, 'sys:role:list', 'BUTTON', null, '21');
-INSERT INTO `mng_menu` VALUES ('9', '31', '3', '新增', null, 'sys:role:add', 'BUTTON', null, '22');
-INSERT INTO `mng_menu` VALUES ('10', '32', '3', '修改', null, 'sys:role:update', 'BUTTON', null, '23');
-INSERT INTO `mng_menu` VALUES ('11', '33', '3', '注销', null, 'sys:role:close', 'BUTTON', null, '24');
-INSERT INTO `mng_menu` VALUES ('64', '24', '2', '解冻', null, 'sys:user:unfreeze', 'BUTTON', null, '15');
-INSERT INTO `mng_menu` VALUES ('65', '25', '2', '重置密码', null, 'sys:user:resetPassword', 'BUTTON', null, '16');
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('1', '0', '系统管理', NULL, NULL, 'CATALOG', 'fa fa-cog', 0);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('2', '1', '用户管理', 'sys/user', NULL, 'MENU', 'fa fa-user', 1);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('3', '1', '角色管理', 'sys/role', NULL, 'MENU', 'fa fa-users', 2);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('20', '2', '查看', NULL, 'sys:user:list', 'BUTTON', NULL, 11);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('21', '2', '新增', NULL, 'sys:user:add', 'BUTTON', NULL, 12);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('22', '2', '修改', NULL, 'sys:user:update', 'BUTTON', NULL, 13);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('23', '2', '注销', NULL, 'sys:user:close', 'BUTTON', NULL, 14);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('30', '3', '查看', NULL, 'sys:role:list', 'BUTTON', NULL, 21);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('31', '3', '新增', NULL, 'sys:role:add', 'BUTTON', NULL, 22);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('32', '3', '修改', NULL, 'sys:role:update', 'BUTTON', NULL, 23);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('33', '3', '注销', NULL, 'sys:role:close', 'BUTTON', NULL, 24);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('4', '1', '系统参数', 'sys/param', NULL, 'MENU', 'fa fa-book', 3);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('24', '2', '解冻', NULL, 'sys:user:unfreeze', 'BUTTON', NULL, 15);
+INSERT INTO `mng_menu` (`MENU_CODE`, `PARENT_CODE`, `NAME`, `URL`, `PERMISSION`, `TYPE`, `ICON`, `ORDERING`) VALUES ('25', '2', '重置密码', NULL, 'sys:user:resetPassword', 'BUTTON', NULL, 16);
 
 -- ----------------------------
 -- Table structure for mng_role
@@ -49,12 +50,12 @@ CREATE TABLE `mng_role` (
   `GMT_CREATE` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `GMT_UPDATE` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台角色表';
 
 -- ----------------------------
 -- Records of mng_role
 -- ----------------------------
-INSERT INTO `mng_role` VALUES ('1', 'admin', '管理员', 'system', 'username', 'NORMAL', '', '系统初始化', '2018-04-23 15:13:37', '2018-05-02 09:41:26');
+INSERT INTO `mng_role` (`ROLE_CODE`, `NAME`, `CREATE_USER_CODE`, `UPDATE_USER_CODE`, `STATUS`, `ROLE_TYPE`, `REMARK`, `GMT_CREATE`, `GMT_UPDATE`) VALUES ('admin', '管理员', 'system', 'username', 'NORMAL', '', '系统初始化', '2018-4-23 15:13:37', '2018-5-2 09:41:26');
 
 -- ----------------------------
 -- Table structure for mng_role_menu
@@ -70,19 +71,19 @@ CREATE TABLE `mng_role_menu` (
 -- ----------------------------
 -- Records of mng_role_menu
 -- ----------------------------
-INSERT INTO `mng_role_menu` VALUES ('1808', '1', '1');
-INSERT INTO `mng_role_menu` VALUES ('1809', '1', '2');
-INSERT INTO `mng_role_menu` VALUES ('1810', '1', '4');
-INSERT INTO `mng_role_menu` VALUES ('1811', '1', '5');
-INSERT INTO `mng_role_menu` VALUES ('1812', '1', '6');
-INSERT INTO `mng_role_menu` VALUES ('1813', '1', '7');
-INSERT INTO `mng_role_menu` VALUES ('1814', '1', '64');
-INSERT INTO `mng_role_menu` VALUES ('1815', '1', '65');
-INSERT INTO `mng_role_menu` VALUES ('1816', '1', '3');
-INSERT INTO `mng_role_menu` VALUES ('1817', '1', '8');
-INSERT INTO `mng_role_menu` VALUES ('1818', '1', '9');
-INSERT INTO `mng_role_menu` VALUES ('1819', '1', '10');
-INSERT INTO `mng_role_menu` VALUES ('1820', '1', '11');
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 1);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 2);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 4);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 5);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 6);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 7);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 64);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 65);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 3);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 8);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 9);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 10);
+INSERT INTO `mng_role_menu` (`ROLE_ID`, `MENU_ID`) VALUES (1, 11);
 
 -- ----------------------------
 -- Table structure for mng_user
@@ -102,12 +103,12 @@ CREATE TABLE `mng_user` (
   `GMT_CREATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `GMT_UPDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台用户表';
 
 -- ----------------------------
 -- Records of mng_user
 -- ----------------------------
-INSERT INTO `mng_user` VALUES ('1', 'admin', '超级管理员', '038bdaf98f2037b31f1e75b5b4c9b26e', 'NORMAL', '2018-05-11 16:43:27', '0', 'system', sysdate(), '系统初始化', sysdate(), sysdate());
+INSERT INTO `mng_user` (`USER_CODE`, `NAME`, `PASSWORD`, `STATUS`, `LAST_LOGIN_TIME`, `LOGIN_FAIL_NUM`, `CREATE_USER_CODE`, `CHANGE_PWD_TIME`, `REMARK`, `GMT_CREATE`, `GMT_UPDATE`) VALUES ('admin', '超级管理员', '038bdaf98f2037b31f1e75b5b4c9b26e', 'NORMAL', '2019-9-10 17:28:46', 0, 'system', '2019-9-10 17:08:16', '系统初始化1', '2019-9-10 17:08:16', '2019-9-10 17:10:09');
 
 -- ----------------------------
 -- Table structure for mng_user_role
@@ -118,9 +119,9 @@ CREATE TABLE `mng_user_role` (
   `USER_ID` bigint(20) NOT NULL COMMENT '用户ID',
   `ROLE_ID` bigint(20) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台用户角色对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='管理平台用户角色对应表';
 
 -- ----------------------------
 -- Records of mng_user_role
 -- ----------------------------
-INSERT INTO `mng_user_role` VALUES ('1', '1', '1');
+INSERT INTO `mng_user_role` (`USER_ID`, `ROLE_ID`) VALUES (1, 1);

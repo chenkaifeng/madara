@@ -16,8 +16,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 /**
  * 字符串编码拦截器
  * 
- * @author HuHui
- * @author 51
+ * @author Chenkf
  * @version $Id: SzfsCharacterEncodingFilter.java, v 0.1 2018年1月2日 下午3:39:21 51 Exp $
  */
 public class SzfsCharacterEncodingFilter extends CharacterEncodingFilter {

@@ -20,7 +20,7 @@
             <property name="addRemarkComments" value="false"/>        
         </commentGenerator>  
         <!-- 数据库连接信息 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://168.33.131.161:8066/ewallet_logic" userId="ewallet" password="123456"/> 
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://168.33.131.162:3306/madara" userId="ewallet" password="123456"/>
         
         <!-- java类型处理器 -->
         <javaTypeResolver>  
