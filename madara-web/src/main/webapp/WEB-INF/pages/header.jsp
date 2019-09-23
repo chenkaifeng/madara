@@ -15,21 +15,6 @@
 <link rel="stylesheet" href="${ctx}/static/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
 <link rel="stylesheet" href="${ctx}/static/plugins/bootstrapValidator/css/bootstrapValidator.min.css"  />
 
-<!-- <script>
-   // 如果浏览器不支持Promise就加载promise-polyfill
-   if ( typeof Promise === 'undefined' ) {
-    var script = document.createElement( 'script' );
-    script.type = 'text/javascript';
-    script.src = '${ctx}/static/plugins/es6-promise/es6-promise.auto.min.js';
-    document.head.appendChild( script );
-
-    var script1 = document.createElement( 'script' );
-    script1.type = 'text/javascript';
-    script1.src = '${ctx}/static/plugins/es6-promise/polyfill.min.js';
-    document.head.appendChild( script1 );
-   }
-   
-</script> -->
 <script src="${ctx}/static/plugins/jquery/jquery-3.2.1.min.js"></script>
 <script src="${ctx}/static/plugins/layer/layer.js"></script>
 <script src="${ctx}/static/plugins/bootstrap/js/bootstrap.min.js"></script>

@@ -1,26 +1,24 @@
 package com.keiver.madara.web.controller;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.github.pagehelper.PageInfo;
 import com.keiver.madara.common.domain.MngUser;
 import com.keiver.madara.common.request.mng.MngUserQueryRequest;
 import com.keiver.madara.common.utils.LogUtil;
 import com.keiver.madara.common.utils.RuntimeAssertUtil;
+import com.keiver.madara.web.base.shiro.ShiroUser;
 import com.keiver.madara.web.base.utils.ResultSet;
 import com.keiver.madara.web.service.MngUserService;
+import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-
-import com.github.pagehelper.PageInfo;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户相关控制器
@@ -195,5 +193,20 @@ public class MngUserController {
         LogUtil.info(logger, "[Controller]处理#Web修改用户密码#成功");
 
         return ResultSet.success();
+    }
+
+    /**
+     * 获取当前用户信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/myInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultSet myInfo() {
+        Map<String, String> info = new HashedMap<>();
+        ShiroUser shiroUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+        info.put("loginName", shiroUser.getLoginName());
+        info.put("userName", shiroUser.getName());
+        return ResultSet.success().put("info", info);
     }
 }

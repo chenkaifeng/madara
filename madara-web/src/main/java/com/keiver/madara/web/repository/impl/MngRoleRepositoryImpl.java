@@ -1,14 +1,10 @@
 package com.keiver.madara.web.repository.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.keiver.madara.common.dao.MngRoleDao;
 import com.keiver.madara.common.domain.MngRole;
+import com.keiver.madara.common.enums.CommonEnum;
 import com.keiver.madara.common.request.mng.MngRoleQueryRequest;
 import com.keiver.madara.web.repository.MngRoleRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -16,8 +12,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -59,7 +58,7 @@ public class MngRoleRepositoryImpl implements MngRoleRepository {
 
     @Override
     public long addRole(MngRole mngRole, String createUserCode) {
-        mngRole.setStatus("00");
+        mngRole.setStatus(CommonEnum.NORMAL.getCode());
         mngRole.setCreateUserCode(createUserCode);
         mngRole.setGmtCreate(new Date());
         mngRole.setGmtUpdate(new Date());

@@ -61,7 +61,7 @@ layer.config({
 var vm = new Vue({
     el:'#app',
     data:{
-        user:{},
+        userinfo:{},
         menuList:{},
         mainPage:"dashboard",
         oldPassword:'',
@@ -83,6 +83,11 @@ var vm = new Vue({
         getMenuList: function (event) {
             $.getJSON("sys/menu/navigate", function(r){
                 vm.menuList = r.menuList;
+            });
+        },
+        getUserInfo: function (event) {
+            $.getJSON("sys/user/myInfo", function(r){
+                vm.userinfo = r.info;
             });
         },
         logout: function (event) {
@@ -131,6 +136,7 @@ var vm = new Vue({
     },
     created: function(){
         this.getMenuList();
+        this.getUserInfo();
     },
     updated: function(){
         //路由

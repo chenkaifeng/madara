@@ -50,18 +50,15 @@
                                 <img src="${ctx}/static/plugins/adminlte/bower_components/Ionicons/png/512/android-contact.png"
                                      class="img-circle" alt="User Image">
                                 <p>
-                                    姓名：{{curUserInfo.userName}}
-                                    <small>{{curUserInfo.corpNo}} {{curUserInfo.corpName}}</small>
+                                    姓名：{{userinfo.userName}}
+                                    <small></small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
-                                        登录名：{{curUserInfo.loginName}}
-                                    </div>
-                                    <div class="col-xs-12 text-center">
-                                        角色：
+                                        登录名：{{userinfo.loginName}}
                                     </div>
                                 </div>
 

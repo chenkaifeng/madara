@@ -26,11 +26,11 @@
 <div id="app" v-cloak>
     <div class="login-box">
         <div class="login-logo">
-            <b>Madara Web</b>
+            <span class="label label-default">Madara web</span>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg"><font size="4">请登录</font></p>
+            <p class="login-box-msg"><span class="badge">请登录</span></p>
             <div v-if="error" class="alert alert-danger alert-dismissible">
                 <h4 style="margin-bottom: 0px;">
                     <i class="fa fa-exclamation-triangle"></i> {{errorMsg}}

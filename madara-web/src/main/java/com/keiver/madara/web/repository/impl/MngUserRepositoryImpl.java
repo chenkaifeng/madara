@@ -1,17 +1,10 @@
 package com.keiver.madara.web.repository.impl;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Resource;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.keiver.madara.common.dao.MngUserDao;
 import com.keiver.madara.common.domain.MngUser;
+import com.keiver.madara.common.enums.CommonEnum;
 import com.keiver.madara.common.request.mng.MngUserQueryRequest;
 import com.keiver.madara.web.repository.MngUserRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -19,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import javax.annotation.Resource;
+import java.util.*;
 
 
 /**
@@ -69,7 +62,7 @@ public class MngUserRepositoryImpl implements MngUserRepository {
 
     @Override
     public long saveMngUser(MngUser mngUser, String createUserCode, String password) {
-        mngUser.setStatus("00");
+        mngUser.setStatus(CommonEnum.NORMAL.getCode());
         mngUser.setPassword(password);
         mngUser.setCreateUserCode(createUserCode);
         mngUserDao.insertSelective(mngUser);

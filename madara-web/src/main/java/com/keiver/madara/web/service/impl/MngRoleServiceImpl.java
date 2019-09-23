@@ -1,10 +1,6 @@
 package com.keiver.madara.web.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.github.pagehelper.PageInfo;
 import com.keiver.madara.common.domain.MngRole;
 import com.keiver.madara.common.domain.MngUser;
 import com.keiver.madara.common.enums.CommonEnum;
@@ -26,19 +22,20 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-
-import com.github.pagehelper.PageInfo;
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 角色服务实现类
- * 
+ *
  * @author prd-ckf
  * @version $Id: MngRoleServiceImpl.java, v 0.1 2018年4月3日 下午9:33:46 prd-ckf Exp $
  */
 @Service
 public class MngRoleServiceImpl implements MngRoleService {
 
-    private static final Logger   logger = LoggerFactory.getLogger(MngRoleServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MngRoleServiceImpl.class);
 
     @Resource
     private MngRoleRepository mngRoleRepository;
@@ -50,7 +47,7 @@ public class MngRoleServiceImpl implements MngRoleService {
     private MngRoleMenuRepository mngRoleMenuRepository;
 
     @Resource
-    private TransactionTemplate   transactionTemplate;
+    private TransactionTemplate transactionTemplate;
 
     @Override
     public PageInfo<MngRole> queryListByPage(MngRoleQueryRequest request) {
@@ -112,15 +109,11 @@ public class MngRoleServiceImpl implements MngRoleService {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-                    //2.新增角色信息，同时获得主键
-                    long roleId = mngRoleRepository.addRole(mngRole, createUserCode);
+                //2.新增角色信息，同时获得主键
+                long roleId = mngRoleRepository.addRole(mngRole, createUserCode);
 
-                    //3.新增角色与权限对应关系
-                    mngRoleMenuRepository.insertRoleMenu(roleId, mngRole.getMenuIdList());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                //3.新增角色与权限对应关系
+                mngRoleMenuRepository.insertRoleMenu(roleId, mngRole.getMenuIdList());
             }
         });
 
