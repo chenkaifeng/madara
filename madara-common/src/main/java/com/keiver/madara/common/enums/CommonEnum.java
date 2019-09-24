@@ -10,21 +10,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum CommonEnum {
 
-    TRUE("TRUE", "是"),
-
-    FALSE("FALSE", "否"),
-
     NORMAL("NORMAL", "正常"),
 
     ABNORMAL("ABNORMAL", "不正常"),
 
     CLOSED("CLOSED", "注销"),
 
-    FROZEN("FROZEN", "冻结"),
-
-    YES("YES", "是"),
-
-    NO("NO", "否");
+    FROZEN("FROZEN", "冻结");
 
     /** 枚举代码 */
     private String code;

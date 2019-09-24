@@ -12,21 +12,16 @@
 <div id="app" v-cloak>
     <div v-show="showList">
         <div class="grid-btn">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="input-group form-group">
                     <span class="input-group-addon">用户名</span>
                     <input type="text" class="form-control" v-model="q.name" @keyup.enter="query" placeholder="用户名">
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="input-group form-group">
-                    <span class="input-group-addon" style="width:0.01%">状态</span>
-                    <select class="selectpicker" v-model="q.status" data-live-search="true">
-                        <option value="">请选择状态</option>
-                        <option value="NORMAL">正常</option>
-                        <option value="FROZEN">冻结</option>
-                        <option value="CLOSED">注销</option>
-                    </select>
+                    <span class="input-group-addon pre-select-span">状态</span>
+                    <vm-query-select id="status" :options="userStatusList" v-model="q.status" data-live-search="true"></vm-query-select>
                 </div>
             </div>
             <div class="form-group col-xs-1">
@@ -109,7 +104,7 @@
     </div>
 
     <div id="userDetailLayer" style="display: none;" class="panel panel-default">
-        <table class="table table-bordered detailtable" style="word-break:break-all; word-wrap:break-all;">
+        <table class="table table-bordered detailtable">
             <tbody>
             <tr>
                 <th class="col-xs-1">用户编码</th>
@@ -119,7 +114,7 @@
             </tr>
             <tr>
                 <th class="col-xs-1">状态</th>
-                <td class="col-xs-1"><strong>{{getStatus_CN(user.status)}}</strong></td>
+                <td class="col-xs-1"><strong>{{getLabelByValue(userStatusList,user.status)}}</strong></td>
                 <th class="col-xs-1">角色</th>
                 <td class="col-xs-1"><strong>{{strJsonArray(user.roleName)}}</strong></td>
             </tr>

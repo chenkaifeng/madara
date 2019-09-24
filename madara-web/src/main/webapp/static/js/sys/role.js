@@ -70,6 +70,7 @@ var vm = new Vue({
 		},
 		showList: true,
 		title:null,
+		roleStatusList:roleStatusList,
 		role:{},
 		isReadOnly: false
 	},
@@ -244,19 +245,6 @@ var vm = new Vue({
         }
 	}
 });
-
-/**
- * 获取状态中文描述
- * @param value
- * @returns
- */
-function getStatus_CN(value){
-	switch(value) {
-	case 'NORMAL': return '正常';
-	case 'CLOSED': return '注销';
-	default: return '未知状态';
-	}	
-}
 
 /**
  * 获取状态样式描述

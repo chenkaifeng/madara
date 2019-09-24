@@ -49,8 +49,16 @@ tbody > tr > th {font-weight: normal; }
 }
 .col-xs-6{padding-left: 0px;padding-right: 0px;}
 .form-horizontal .form-group {margin-left:0px;margin-right:0px;}
+
 table.detailtable > tbody > tr > th {
 	text-align: right;
+}
+table.detailtable{
+    word-break:break-all;
+}
+
+span.pre-select-span{
+    width:0.01%;
 }
 
 .placeholder {position: absolute;top: 7px;margin-left:14px;z-index: 10;color: #888;}

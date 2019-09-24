@@ -1,25 +1,26 @@
 package com.keiver.madara.web.controller;
 
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-
 import com.alibaba.fastjson.JSON;
 import com.google.code.kaptcha.Producer;
 import com.keiver.madara.common.utils.LogUtil;
 import com.keiver.madara.web.base.shiro.ShiroUser;
 import com.keiver.madara.web.base.utils.ResultSet;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -68,10 +69,19 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResultSet login(String username, String password, String captcha) {
-
+        if(StringUtils.isBlank(username)){
+            return ResultSet.error("请输入用户名");
+        }
+        if(StringUtils.isBlank(password)){
+            return ResultSet.error("请输入密码");
+        }
+        if(StringUtils.isBlank(captcha)){
+            return ResultSet.error("请输入验证码");
+        }
         LogUtil.info(logger, "接收到用户登录请求，用户名={0},验证码={1}", username, captcha);
         //1.校验验证码
         String trueCaptcha = (String) SecurityUtils.getSubject().getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+
         if (trueCaptcha == null || !trueCaptcha.equalsIgnoreCase(captcha)) {
             LogUtil.info(logger, "验证码{0}错误", captcha);
             return ResultSet.error("验证码错误");

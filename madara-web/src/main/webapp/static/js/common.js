@@ -228,3 +228,56 @@ function formatMoney(s, type) {
 function formatMoneyObjectToString(money) {
 	return money==null?'':formatMoney(money.amount);
 }
+
+
+//自己封装查询用的select 增加<全部>项
+Vue.component('vm-query-select', {
+    props : ['options', 'value', 'multiple', 'method', 'load', 'index', 'childidx'],
+    template : "<select :multiple='multiple' class='selectpicker' data-size='10' data-live-search='true' data-none-results-text='找不到{0}' data-live-search-placeholder='搜索'><option value=''>全部</option><option :value='option.value' v-for='option in options'>{{ option.label }}</option></select>",
+    mounted : function () {
+        var vm = this;
+        $(this.$el).selectpicker('val', this.value != null ? this.value : null);
+        $(this.$el).on('changed.bs.select', function () {
+            vm.$emit('input', $(this).val());
+            if (typeof(vm.method) != 'undefined') {
+                vm.method(vm.index, vm.childidx, this.value);
+            }
+        });
+        $(this.$el).on('show.bs.select', function () {
+            if (typeof(vm.load) != 'undefined') {
+                vm.load(vm.index, vm.childidx);
+            }
+        });
+    },
+    updated : function () {
+        $(this.$el).selectpicker('refresh');
+    },
+    destroyed : function () {
+        $(this.$el).selectpicker('destroy');
+    }
+});
+
+
+
+
+//用户状态枚举
+var userStatusList=[
+    {"label":"正常","value":"NORMAL"},
+    {"label":"冻结","value":"FROZEN"},
+    {"label":"注销","value":"CLOSED"}
+];
+
+//角色状态枚举
+var roleStatusList=[
+    {"label":"正常","value":"NORMAL"},
+    {"label":"注销","value":"CLOSED"}
+];
+
+//根据value获取label
+function getLabelByValue(list, value){
+    for(var j=0;j<list.length;j++){
+        if(value==list[j].value){
+            return list[j].label;
+        }
+    }
+}
