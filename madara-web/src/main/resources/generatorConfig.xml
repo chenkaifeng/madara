@@ -11,7 +11,7 @@
     	<!-- 生成的Java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
         <!-- 生成文件的comment配置,通过type指定具体实现类 -->
-        <commentGenerator type="org.szfs.basic.mybatis.CommentGenerator">
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
           	<!-- 是否去除时间标志 true-去除 -->
             <property name="suppressDate" value="true"/>  
             <!-- 是否去除自动生成的注释 true-去除 -->
@@ -20,7 +20,7 @@
             <property name="addRemarkComments" value="false"/>        
         </commentGenerator>  
         <!-- 数据库连接信息 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://168.33.131.162:3306/madara" userId="ewallet" password="123456"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/madara" userId="madara" password="123456"/>
         
         <!-- java类型处理器 -->
         <javaTypeResolver>  
@@ -37,27 +37,27 @@
         </javaTypeResolver>  
         
         <!-- 生成领域对象的包名和位置 -->
-        <javaModelGenerator targetPackage="com.keiver.madara.common.domain" targetProject="../ewallet-common/src/main/java">
+        <javaModelGenerator targetPackage="com.keiver.madara.common.domain" targetProject="../madara-common/src/main/java">
             <property name="enableSubPackages" value="true"/>  
             <!-- 是否在getter方法中对String类型字段调用trim()方法 true-是 -->
             <property name="trimStrings" value="true"/>  
         </javaModelGenerator>  
         
         <!-- 生成mapping文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">  
+        <sqlMapGenerator targetPackage="mapping" targetProject="../madara-common/src/main/resources">
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>
         
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.keiver.madara.common.dao" targetProject="../ewallet-common/src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.keiver.madara.common.dao" targetProject="../madara-common/src/main/java">
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
 		
 		<!-- 生成表 -->
-		<table tableName="check_merchant_daily_clear" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-			<columnOverride column="TRADE_AMOUNT" javaType="com.keiver.madara.common.util.Money"></columnOverride>
+		<table tableName="risk_rule" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<!--<columnOverride column="TRADE_AMOUNT" javaType="com.keiver.madara.common.util.Money"></columnOverride>
 			<columnOverride column="REFUND_AMOUNT" javaType="com.keiver.madara.common.util.Money"></columnOverride>
-			<columnOverride column="CLEAR_AMOUNT" javaType="com.keiver.madara.common.util.Money"></columnOverride>
+			<columnOverride column="CLEAR_AMOUNT" javaType="com.keiver.madara.common.util.Money"></columnOverride>-->
 		</table> 
 		
     </context>  
