@@ -206,6 +206,7 @@
                         <path>/madara-web</path>
                         <port>8088</port>
                         <uriEncoding>UTF-8</uriEncoding>
+                        <useBodyEncodingForURI>true</useBodyEncodingForURI>
                     </configuration>
                 </plugin>
                 <plugin>
