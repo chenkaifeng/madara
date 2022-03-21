@@ -36,7 +36,7 @@
 
         <logback.version>1.2.3</logback.version>
         <disruptor.version>3.3.4</disruptor.version>
-        <dubbo.version>2.6.2</dubbo.version>
+        <dubbo.version>2.6.9</dubbo.version>
         <curator.version>2.8.0</curator.version>
         <fastjson.version>1.2.44</fastjson.version>
         <zookeeper.version>3.4.8</zookeeper.version>
